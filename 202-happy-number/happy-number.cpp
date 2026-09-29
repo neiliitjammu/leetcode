@@ -11,20 +11,22 @@ public:
         return sum;
     }
     bool isHappy(int n) {
-        int sum = squaresum(n);
-        if(sum == 1)
+        int slow = n;
+        int fast = n;
+        if(slow == 1)
         {
             return true;
         }
-        while(sum != 1)
-        {
-            if(sum == 4)
+        while(slow != 1)
+        {   
+            slow = squaresum(slow);
+            fast = squaresum(squaresum(fast));
+            if(slow == fast and slow != 1 and fast != 1)
             {
                 return false;
             }
-           sum = squaresum(sum);
         }
-        if(sum == 1)
+        if(slow == 1)
         {
             return true;
         }
