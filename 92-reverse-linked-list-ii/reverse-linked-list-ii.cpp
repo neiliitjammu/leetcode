@@ -25,30 +25,37 @@ public:
             l = l->next;
             n++;
         }
-        ListNode* prev = f;
-        ListNode* temp = l->next;
+        ListNode* prev = head;
+        if(f == head)
+        {
+          prev = NULL;  
+        }
+        else
+        {
+            while(prev->next != f)
+            {
+                prev = prev->next;
+            }
+        }
+        ListNode *p = l->next;
+        ListNode *tem = prev;
         ListNode *curr = prev;
-        ListNode *nex = f->next;
-        while(nex != temp)
+        ListNode *nex = f;
+        while(nex != p)
         {
             curr = nex;
             nex = nex->next;
             curr->next = prev;
             prev = curr;
         }
-        if(f == head)
+        if(tem != NULL)
         {
-           head = l;
-           f->next = nex;
+            tem->next = l;
+            f->next = nex;
         }
         else
         {
-            prev = head;
-            while(prev->next != f)
-            {
-                prev = prev->next;
-            }
-            prev->next = l;
+            head = l;
             f->next = nex;
         }
         return head;
