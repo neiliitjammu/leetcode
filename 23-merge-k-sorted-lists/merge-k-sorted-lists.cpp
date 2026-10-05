@@ -93,10 +93,24 @@ ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
         {
             return lists[0];
         }
-        ListNode *head = mergeTwoLists(lists[0],lists[1]) ;
-        for(int i = 2; i < lists.size(); i++)
+        vector<ListNode*> temp;
+        int i = 0;
+        for(; i < lists.size() - 1; i += 2)
         {
-           head = mergeTwoLists(head,lists[i]);          
+           temp.push_back(mergeTwoLists(lists[i],lists[i+1]));       
+        }
+        if(i == lists.size() - 1)
+        {
+            temp.push_back(lists[i]);
+        }
+        if(temp.size() == 1)
+        {
+            return temp[0];
+        }
+        ListNode *head = mergeTwoLists(temp[0],temp[1]) ;
+        for(int j = 2; j < temp.size(); j++)
+        {
+           head = mergeTwoLists(head,temp[j]);          
         }
         return head;
     }
