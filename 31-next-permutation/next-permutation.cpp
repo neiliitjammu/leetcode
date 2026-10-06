@@ -27,10 +27,7 @@ public:
                {
                 j++;
                }
-               if(j == nums.size())
-               {
-                j = nums.size() - 1;
-               }
+               
                swap(nums[i],nums[j]);
               
             return;
