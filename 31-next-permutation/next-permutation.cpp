@@ -10,7 +10,7 @@ public:
             }
             if(i == 0)
             {
-                sort(nums.begin(),nums.end());
+                reverse(nums.begin(),nums.end());
                 return;
             }
             else if(i == nums.size() - 1)
@@ -21,7 +21,7 @@ public:
             else
             {
                i--;
-               sort(nums.begin() + i + 1, nums.end());
+               reverse(nums.begin() + i + 1, nums.end());
                int j = i + 1;
                while(j < nums.size() and nums[i] >= nums[j])
                {
@@ -32,7 +32,7 @@ public:
                 j = nums.size() - 1;
                }
                swap(nums[i],nums[j]);
-               sort(nums.begin() + i + 1, nums.end());
+              
             return;
             }
         }
