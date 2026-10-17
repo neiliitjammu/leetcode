@@ -35,44 +35,24 @@ public:
             {
                st.pop();
             }
-            if(!st.empty())
+            if(st.empty())
             {
                del.push(temp);
             }
             st.push(temp);
             temp = temp->next;
         }
-    head = Reverse(head);
+    head = del.top();
     temp = head;
-    ListNode *p;
-    while(temp != NULL and !del.empty())
+    temp->next = NULL;
+    del.pop();
+    while(!del.empty())
     {
-        
-        if(head == del.top())
-        {   
-            head = head->next;
-            temp = head;
-        }
-        else if(temp == del.top())
-        {
-            p = head;
-            while(p->next != temp)
-            {
-                p = p->next;
-            }
-            p->next = p->next->next;
-        }
-        else
-        {
-            while(temp->next != del.top())
-            {
-                temp = temp->next;
-            }
-            temp->next = temp->next->next;
-        }
-        temp = del.top()->next;
+        temp->next = del.top();
+        temp = temp->next;
+        temp->next = NULL;
         del.pop();
     }
-    
+   
     return head;}
 };
