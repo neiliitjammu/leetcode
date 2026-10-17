@@ -3,7 +3,7 @@ public:
     vector<int> nextGreaterElements(vector<int>& nums) {
          stack<int> st;
                        vector<int> ans;
-                       stack<int> sti;
+                   
                       
                        for(int i = nums.size() - 1; i >= 0; i--)
                        {
@@ -19,27 +19,22 @@ public:
                              {  ans.push_back(-1);
                                 break;
                              }
-                             while(k >= 0)
-                             {
-                                  if(nums[k] > nums[i])
-                                  {
-                                    sti.push(nums[k]);
-                                    
-                                  }
-                                  k--;
-                             }
-                             if(sti.empty())
-                             {
+                             int p;
+                            for(p = 0; p <= k; p++)
+                            {
+                                if(nums[p] > nums[i])
+                                {
+                                    break;
+                                }
+                            }
+                            if(p <= k)
+                            {
+                                ans.push_back(nums[p]);
+                            }
+                            else
+                            {
                                 ans.push_back(-1);
-                             }
-                             else
-                             {
-                                ans.push_back(sti.top());
-                             }
-                             while(!sti.empty())
-                             {
-                                sti.pop();
-                             }
+                            }
                          }
                          //else case scenario
                          else
